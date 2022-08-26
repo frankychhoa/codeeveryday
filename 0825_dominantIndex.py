@@ -1,3 +1,4 @@
+import copy
 class Solution:
     def dominantIndex(self, nums) -> int:
         src = copy.copy(nums)
