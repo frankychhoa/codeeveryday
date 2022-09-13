@@ -1,35 +1,40 @@
-# class KthLargest:
+class KthLargest:
 
-#     def __init__(self, k: int, nums):
-#         self.k = k
-#         self.root = TreeNode(100000)
-#         if len(nums) > 0:
-#             self.root = TreeNode(nums[0])
-#             for i in range(1,len(nums)):
-#                 self.root.insert(self.root,nums[i])
+    def __init__(self, k: int, nums):
+        self.k = k
+        self.root = TreeNode(100000)
+        if len(nums) > 0:
+            self.root = TreeNode(nums[0])
+            for i in range(1,len(nums)):
+                self.root.insert(self.root,nums[i])
         
 
 
-#     def add(self, val: int) -> int:
-#         if self.root.val == 100000:
-#             self.root.val = val
-#         self.root.insert(self.root, val)
-#         arr = []
-#         self.inorder(self.root, arr)
-#         self.nums = arr
-#         index = self.k * -1
-#         if len(arr) < self.k:
-#             return -1
+    def add(self, val: int) -> int:
+        if self.root.val == 100000:
+            self.root.val = val
+        self.root.insert(self.root, val)
+        arr = []
+        # self.inorder(self.root, arr)
+        # self.nums = arr
+        # index = self.k * -1
+        # if len(arr) < self.k:
+        #     return -1
 
-#         return arr[index]
+        #return arr[index]
+        result = self.order(self.root, arr, 0)
+        return result
         
     
-#     def inorder(self, root, nums):
-#         if root.left != None:
-#             self.inorder(root.left, nums)
-#         nums.append(root.val)
-#         if root.right != None:
-#             self.inorder(root.right, nums)
+    def order(self, root, nums, val):
+        if root.left != None:
+            self.order(root.left, nums)
+        nums.append(root.val)
+        val += 1
+        if val == self.k:
+            return root.val
+        if root.right != None:
+            self.order(root.right, nums)
 
 
 
