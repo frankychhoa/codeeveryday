@@ -1,4 +1,3 @@
-import string
 class Solution:
     def __init__(self) -> None:
         self.ref={}
@@ -32,14 +31,18 @@ class Solution:
         if index in m:
             return m[index]
         if index == len(s)-1:
+            
             m[index] = 1
             if next in self.ref:
                 return 1
 
         if index == len(s)-2:
+                
+            
             m[index] = self.dfs(m,index+1,s,s[index+1])
             return m[index] 
         else:
+            
             n = ""+s[index+1]+s[index+2]
             m[index] = self.dfs(m,index+1,s,s[index+1]) + self.dfs(m,index+2,s,n)
             return m[index]
