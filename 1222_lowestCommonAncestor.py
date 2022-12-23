@@ -49,3 +49,36 @@ class Solution:
         
         dfs(root,TreeNode(10**10))
         return self.res
+
+class Solution:
+    def __init__(self):
+        self.res = TreeNode(0)
+        self.arr=[]
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #res = TreeNode(0)
+        if not root:
+            return None
+        def dfs(root,a):
+            if root.val == p.val or root.val == q.val:
+                x = root.val
+                self.arr.append(a)
+            if root.left:
+                x = root.left.val
+                dfs(root.left,a+[root.left])
+            if root.right:
+                x = root.right.val
+                dfs(root.right,a+[root.right])
+        dfs(root,[root])
+        a,b = self.arr[0],self.arr[1]
+        a_set = set()
+        b_list = []
+        b_dic = {}
+        for i in range(len(a)):
+            a_set.add(a[i].val)
+        for i in range(len(b)):
+            b_list.append(b[i].val)
+            b_dic[b[i].val] = b[i]
+        b_list.reverse()
+        for i in b_list:
+            if i in a_set:
+                return b_dic[i]
